@@ -1,43 +1,29 @@
 import './App.css';
-import Player from './components/Player';
-import CardList from './components/CardList';
 import { useContext } from 'react';
 import ExecutePassButton from './components/ExecutePassButton';
 import { GameContext } from './Context/GameContext';
 
 function App() {
   
-  const { deck,
-    playerOneHand,
-    playerTwoHand,
-    playerThreeHand,
+  const {
+    Player1,
+    Player2,
+    Player3,
+    Deck,
     selectedCard } = useContext(GameContext);
 
   return (
     <div className="App">
       <section>
         {/* if the player names are numbers, that will make our life easier later because we can reuse numbers as arrays. Note that this will make our app brittle! */}
-        <Player
-          player={1}
-          hand={playerOneHand}
-        />
-        <Player
-          player={2}
-          hand={playerTwoHand}
-        />
-        <Player
-          player={3}
-          hand={playerThreeHand}
-        />
-        <CardList
-          cards={deck}
-          player={'deck'}
-        />
+        <Player1 />
+        <Player2 />
+        <Player3 />
+        <Deck />
       </section>
       <section>
         {selectedCard && (
-          <ExecutePassButton
-          />
+          <ExecutePassButton />
         )}
       </section>
     </div>

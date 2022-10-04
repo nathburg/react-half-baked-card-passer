@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import initialCards from '../cards-data';
+import Player from '../components/Player';
 
 
 const GameContext = createContext();
@@ -12,6 +13,22 @@ const GameProvider = ({ children }) => {
   const [playerThreeHand, setPlayerThreeHand] = useState([]);
   const [from, setFrom] = useState('deck');
   const [to, setTo] = useState(1);
+
+  function Player1() {
+    return <Player player={1} hand={playerOneHand} />;
+  }
+  
+  function Player2() {
+    return <Player player={2} hand={playerTwoHand} />;
+  } 
+
+  function Player3() {
+    return <Player player={3} hand={playerThreeHand} />;
+  }
+  
+  function Deck() {
+    return <Player player={'deck'} hand={deck} />;
+  }
   
   function findCardIndex(value, suit, cards) {
     return cards.findIndex((card) => card.value === value && card.suit === suit);
@@ -41,13 +58,17 @@ const GameProvider = ({ children }) => {
 
   return <GameContext.Provider value={{ 
     deck, setDeck,
-    playerOneHand, setPlayerOneHand,
-    playerTwoHand, setPlayerTwoHand,
-    playerThreeHand, setPlayerThreeHand,
+    setPlayerOneHand,
+    setPlayerTwoHand,
+    setPlayerThreeHand,
     selectedCard, setSelectedCard,
     from, setFrom,
     to, setTo,
-    passCard
+    passCard,
+    Player1,
+    Player2,
+    Player3,
+    Deck
   }}>{children}</GameContext.Provider>;
 };
 
